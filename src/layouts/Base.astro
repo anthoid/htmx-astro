@@ -1,0 +1,27 @@
+---
+import Navigation from "../components/Navigation.astro";
+const { title } = Astro.props;
+---
+
+<html lang="en" class="p-4 h-full flex justify-center items-center">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <script src="../../node_modules/htmx.org/dist/htmx.min.js"></script>
+    <title>{"Daniel" + (title ? ` - ${title}` : "")}</title>
+  </head>
+
+  <body
+    hx-boost="true"
+    hx-target="body"
+    hx-swap="innerHTML swap:0.2s"
+    class="bg-neutral-1 text-neutral-8 dark:(bg-neutral-9 text-neutral-2) w-prose transition-opacity duration-200 htmx-swapping:(opacity-0) htmx-added:opacity-0"
+  >
+    <Navigation />
+    <main class="prose prose-neutral dark:prose-invert">
+      <hr />
+      <slot />
+    </main>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+---
+const path = Astro.request.url.split("/")[3];
+const sections = [
+  { label: "home", path: "/" },
+  { label: "what?", path: "/what" },
+  { label: "why?", path: "/why" },
+  { label: "how?", path: "/how" },
+];
+---
+
+<nav class="mb-6">
+  <ul>
+    {
+      sections.map((s) => (
+        <li class="mb-1.5">
+          <a
+            href={s.path}
+            class={
+              path === s.path.slice(1)
+                ? "font-bold pointer-events-none"
+                : "underline underline-dotted"
+            }
+          >
+            {s.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
